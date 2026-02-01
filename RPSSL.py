@@ -14,7 +14,8 @@ while True:
         print("Please enter a number!")
 while plyr_win_number < game_number and com_win_number < game_number:
     computer = random.choice(options)
-    player = input("Please choose an option (rock, paper, scissors, spock, lizard) :").lower()
+    while player not in options:
+        player = input("Please choose an option (rock, paper, scissors, spock, lizard) :").lower()
     print(f"Player: {player}")
     print(f"Computer: {computer}")
     if player == computer:
@@ -100,6 +101,7 @@ while plyr_win_number < game_number and com_win_number < game_number:
             print(f"The {computer} poisons the {player}")
             print("Computer wins!")
             com_win_number +=1
+    player = None
 
 print("--------------End of the Game--------------")
 
