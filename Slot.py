@@ -20,8 +20,9 @@ def get_payout(row, bet):
             return bet * 5
         elif row[0] == '🔔':
             return bet * 10
-        elif row[0] == '⭐':
+        else:
             return bet * 25
+
     else:
         return 0
 
@@ -33,7 +34,9 @@ def main():
     print("Symbols: 🍒 🍉 🍋 🔔 ⭐ ")
     print("-------------------------")
 
-    while balance > 0:
+    is_running = True
+
+    while balance > 0 and is_running:
         print(f"Current balance: ${balance}")
         bet = input("Place your bet amount: ")
         if not bet.isdigit():
@@ -64,9 +67,13 @@ def main():
         balance += payout
         while balance > 0:
             play_again = input("Do you want to play again?: (Y/N)").upper()
-
-            if play_again != 'Y':
+            if play_again == 'Y':
                 break
+            if play_again == "N":
+                is_running = False
+                break
+            else:
+                print("Please write Y or N!")
     print("-----------------------------------------------------")
     print(f"Thanks for playing! Your final balance is: {balance}")
     print("-----------------------------------------------------")
