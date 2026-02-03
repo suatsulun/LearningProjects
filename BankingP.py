@@ -3,21 +3,31 @@ def show_balance(balance):
     print(f"Your balance is : ${balance:.2f}")
 
 def deposit():
-    amount = float(input("Enter an amount to deposit: "))
-    if amount < 0:
-        print("That's not a valid amount")
-        return 0
+    amount = input("Enter an amount to deposit: ")
+    if amount.isdigit():
+        amount = float(amount)
+        if amount < 0:
+            print("That's not a valid amount")
+            return 0
+        else:
+            return amount
     else:
-        return amount
-
-def withdraw():
-    amount = float(input("Enter an amount to withdraw: "))
-    if amount < 0:
-        print("That's not a valid amount")
         return 0
-    else:
-        return amount
 
+def withdraw(x):
+    amount = input("Enter an amount to withdraw: ")
+    if amount.isdigit():
+        amount = float(amount)
+        if amount < 0:
+            print("That's not a valid amount")
+            return 0
+        elif amount > x:
+            print("Inffuicient Funds!")
+            return 0
+        else:
+            return amount
+    else:
+        return 0
 def main():
     balance = 0
     is_running = True
@@ -39,12 +49,7 @@ def main():
             case "2":
                 balance += deposit()
             case "3":
-                remove = withdraw()
-                if remove <= balance:
-                    balance -= remove
-                else:
-                    print("***************************")
-                    print("Insufficient funds")
+                balance -= withdraw(balance)
             case "4":
                 is_running = False
             case _:
